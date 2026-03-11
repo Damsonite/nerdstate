@@ -4,10 +4,10 @@
   }
 
   .btn-primary {
-    @apply border border-primary px-4 py-1.5 rounded font-mono text-primary hover:bg-primary hover:text-background transition-all;
+    @apply border border-primary px-4 py-1.5 rounded font-display text-primary hover:bg-primary hover:text-background transition-all;
   }
 
   .btn-secondary {
-    @apply border border-transparent px-4 py-1.5 rounded font-mono text-muted hover:border-muted hover:text-text transition-all;
+    @apply border border-transparent px-4 py-1.5 rounded font-display text-muted hover:border-muted hover:text-text transition-all;
   }
 }
