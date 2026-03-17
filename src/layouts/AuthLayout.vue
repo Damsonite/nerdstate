@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HeroBackground from '@/components/landing/HeroBackground.vue'
 import AppLogo from '@/components/shared/AppLogo.vue'
+import CrtOverlay from '@/components/shared/CrtOverlay.vue'
 import { COPYRIGHT } from '@/constants/app'
 </script>
 
@@ -9,6 +10,7 @@ import { COPYRIGHT } from '@/constants/app'
     class="relative min-h-screen bg-background text-text flex flex-col items-center justify-center px-6"
   >
     <HeroBackground />
+    <CrtOverlay />
 
     <div class="z-10 mb-10">
       <AppLogo />

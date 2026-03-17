@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import AppLogo from '@/components/shared/AppLogo.vue'
+import CrtOverlay from '@/components/shared/CrtOverlay.vue'
 import { COPYRIGHT } from '@/constants/app'
 </script>
 
 <template>
   <div class="min-h-screen bg-background text-text">
+    <CrtOverlay />
     <header class="fixed top-0 z-50 w-full border-b border-muted/20 bg-surface/40 backdrop-blur-sm">
       <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <AppLogo />
