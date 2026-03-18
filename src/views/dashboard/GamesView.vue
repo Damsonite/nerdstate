@@ -4,14 +4,25 @@ import { computed } from 'vue'
 import { GameList, GamesSearchBar, PageHeader, RetroPanel } from '@/components/dashboard'
 import { useGameSearch } from '@/composables/useGameSearch'
 import { useGames } from '@/composables/useGames'
+import { useLibrary } from '@/composables/useLibrary'
 import { formatDate } from '@/utils/dates'
 import { formatRating } from '@/utils/numbers'
 
 const { games, selectedGame, loading, error, selectGame } = useGames()
+const { backlog, mutating: libraryMutating, error: libraryError, addToBacklog } = useLibrary()
 const { searchQuery, filteredGames, visibleSelectedGame } = useGameSearch(games, selectedGame)
 
 const selectedTitle = computed(() => visibleSelectedGame.value?.title ?? 'NO SIGNAL')
 const selectedSlug = computed(() => visibleSelectedGame.value?.slug ?? 'unknown-slug')
+const isInLibrary = computed(() => {
+  if (!visibleSelectedGame.value) return false
+  return backlog.value.some((entry) => entry.gameId === visibleSelectedGame.value?.id)
+})
+
+async function handleAddToLibrary() {
+  if (!visibleSelectedGame.value) return
+  await addToBacklog(visibleSelectedGame.value.id)
+}
 </script>
 
 <template>
@@ -59,6 +70,19 @@ const selectedSlug = computed(() => visibleSelectedGame.value?.slug ?? 'unknown-
           <div class="space-y-2">
             <h2 class="font-display text-2xl text-primary retro-glow">{{ selectedTitle }}</h2>
             <p class="font-mono text-xs text-muted break-all">slug: {{ selectedSlug }}</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button
+              type="button"
+              class="rounded border border-primary/35 bg-primary/10 px-3 py-2 font-mono text-xs text-primary transition-colors hover:bg-primary/20 disabled:opacity-60"
+              :disabled="libraryMutating || isInLibrary"
+              @click="handleAddToLibrary"
+            >
+              {{ isInLibrary ? 'IN LIBRARY' : 'ADD TO LIBRARY' }}
+            </button>
+
+            <p v-if="libraryError" class="font-mono text-xs text-accent">{{ libraryError }}</p>
           </div>
 
           <dl class="grid grid-cols-1 sm:grid-cols-2 gap-3">

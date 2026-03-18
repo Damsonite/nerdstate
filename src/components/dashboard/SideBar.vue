@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Gamepad2, LayoutDashboard, LogOut, Settings, User } from 'lucide-vue-next'
+import { BookMarked, Gamepad2, LayoutDashboard, LogOut, Settings, User } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
 
 import AppLogo from '@/components/shared/AppLogo.vue'
@@ -26,10 +26,12 @@ async function handleSignOut() {
     </div>
 
     <!-- Navigation -->
-    <nav class="flex flex-col flex-1 px-3 py-4">
+    <nav class="flex flex-col flex-1 gap-1 px-3 py-4">
       <NavItem href="/dashboard" label="Dashboard" :icon="LayoutDashboard" />
 
       <NavItem href="/dashboard/games" label="Gallery" :icon="Gamepad2" />
+
+      <NavItem href="/dashboard/library" label="Library" :icon="BookMarked" />
     </nav>
 
     <!-- User actions -->

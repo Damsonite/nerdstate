@@ -19,6 +19,10 @@ const router = createRouter({
           component: () => import('@/views/dashboard/GamesView.vue'),
         },
         {
+          path: 'library',
+          component: () => import('@/views/dashboard/LibraryView.vue'),
+        },
+        {
           path: 'profile',
           redirect: '/dashboard',
         },
