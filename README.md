@@ -2,7 +2,7 @@
 
 Nerdstate is a retro-themed game dashboard built with Vue 3.
 
-This project started as a love letter to classic gaming and a space to organize, explore, and celebrate timeless titles. The goal is not only to build a solid app, but also to grow an open project where more people can collaborate, share ideas, and shape what comes next.
+This project started as an academic project and evolved into a love letter to classic gaming—a space to organize, explore, and celebrate timeless titles. The goal is not only to build a solid app, but also to grow an open project where more people can collaborate, share ideas, and shape what comes next.
 
 ## 🎯 Mission
 
