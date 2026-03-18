@@ -24,7 +24,7 @@ export function useLoginForm() {
 
     try {
       await authStore.signIn(email.value, password.value)
-      await router.push('/')
+      await router.push('/dashboard')
     } catch (caughtError) {
       if (caughtError instanceof Error) {
         error.value = caughtError.message

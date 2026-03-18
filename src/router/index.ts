@@ -1,8 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import { useAuthStore } from '@/stores/auth'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/dashboard',
+      component: () => import('@/layouts/PrivateLayout.vue'),
+      meta: { requiresAuth: true },
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/dashboard/DashboardView.vue'),
+        },
+        {
+          path: 'games',
+          component: () => import('@/views/dashboard/GamesView.vue'),
+        },
+        {
+          path: 'profile',
+          redirect: '/dashboard',
+        },
+        {
+          path: 'settings',
+          redirect: '/dashboard',
+        },
+      ],
+    },
     {
       path: '/',
       component: () => import('@/layouts/PublicLayout.vue'),
@@ -28,6 +53,21 @@ const router = createRouter({
       ],
     },
   ],
+})
+
+router.beforeEach(async (to) => {
+  const auth = useAuthStore()
+  if (!auth.initialized) {
+    await auth.initializeSession()
+  }
+
+  if (to.meta.requiresAuth && !auth.session) {
+    return { path: '/login' }
+  }
+
+  if (!to.meta.requiresAuth && auth.session) {
+    return { path: '/dashboard' }
+  }
 })
 
 export default router

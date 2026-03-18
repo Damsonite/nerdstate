@@ -10,8 +10,8 @@ defineProps<{
 </script>
 
 <template>
-  <li class="flex flex-1 flex-col gap-1 overflow-y-auto">
-    <RouterLink v-if="href" :to="href" class="link" active-class="bg-primary/10 text-primary">
+  <li class="flex flex-col gap-1 overflow-y-auto">
+    <RouterLink v-if="href" :to="href" class="link" exact-active-class="bg-primary/10 text-primary">
       <component :is="icon" :size="16" />
       {{ label }}
     </RouterLink>
