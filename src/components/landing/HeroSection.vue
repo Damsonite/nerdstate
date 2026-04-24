@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import HeroBackground from './HeroBackground.vue'
+</script>
+
 <template>
   <section class="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
     <HeroBackground />
@@ -25,7 +29,3 @@
     </div>
   </section>
 </template>
-
-<script setup lang="ts">
-import HeroBackground from './HeroBackground.vue'
-</script>
